@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup,FormControl} from '@angular/forms' ;
+import { FormGroup, FormControl } from '@angular/forms';
+import { UserServiceService } from '../user-service.service';
 
 @Component({
   selector: 'app-add-user',
@@ -8,21 +9,26 @@ import {FormGroup,FormControl} from '@angular/forms' ;
 })
 export class AddUserComponent implements OnInit {
 
-  addUser= new FormGroup({
-    name : new FormControl(''),
-    email : new FormControl('') ,
-    mobile : new FormControl(''),
-    userType : new FormControl('')
+  addUser = new FormGroup({
+    name: new FormControl('sdfghj'),
+    email: new FormControl(''),
+    mobile: new FormControl(''),
+    userType: new FormControl(''),
+    companyId: new FormControl('5fb60fefd825673314d2e1b0'),
+    password: new FormControl('')
+
   })
 
-  constructor() { }
+
+
+  constructor(private user: UserServiceService) { }
 
   ngOnInit(): void {
   }
 
-  collectUser()
-  {
-    console.warn(this.addUser.value)
+  collectUser() {
+    console.warn("The data that is recieved from the form is ", this.addUser.value)
+    
   }
 
 }
