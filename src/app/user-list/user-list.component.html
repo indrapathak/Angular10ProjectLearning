@@ -7,6 +7,7 @@
       <th scope="col">Email</th>
       <th scope="col">Mobile</th>
       <th scope="col">User Type</th>
+      <th scope="col">Operations</th>
     </tr>
   </thead>
   <tbody>
@@ -16,6 +17,7 @@
       <td>{{item.email}} </td>
       <td>{{item.mobile}} </td>
       <td>{{item.userType}} </td>
+      <td><i (click)="deleteUser(item.email)" class="fa fa-trash" style="font-size:20px;color:red;"></i></td>
     </tr>
   
   </tbody>

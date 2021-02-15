@@ -20,4 +20,12 @@ export class UserServiceService {
     return this.http.post(this.url,data);
   }
 
+  //Delete User Function is not working as backend is not getting email Need check for this
+  deleteUserData(key)
+  {
+    let urlVal = "http://localhost:5050/userDelete"
+    console.log("the deletion key in delete User Data in services is",key)
+    return this.http.post(this.url+"Delete",key)
+  }
+
 }

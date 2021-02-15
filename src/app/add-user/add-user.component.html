@@ -1,3 +1,9 @@
+<div *ngIf="alert" class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>User Added Succesfully!</strong> Your User Addition is succesful.
+  <button (click)="closeAlert()" type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
 
 <form [formGroup]="addUser"  (ngSubmit)="collectUser()">
   <div class="form-group">

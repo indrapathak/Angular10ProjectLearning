@@ -17,4 +17,12 @@ export class UserListComponent implements OnInit {
     }))
   }
 
+  deleteUser(deletionKey)
+  {
+    console.log("the deleteuser function is called with deletionKey",deletionKey)
+    this.user.deleteUserData(deletionKey).subscribe(result=>{
+      console.warn("the result from the user deletion is",result)
+    })
+  }
+
 }

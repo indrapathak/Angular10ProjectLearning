@@ -9,8 +9,9 @@ import { UserServiceService } from '../user-service.service';
 })
 export class AddUserComponent implements OnInit {
 
+  alert : boolean = false;
   addUser = new FormGroup({
-    name: new FormControl('sdfghj'),
+    name: new FormControl(''),
     email: new FormControl(''),
     mobile: new FormControl(''),
     userType: new FormControl(''),
@@ -31,14 +32,14 @@ export class AddUserComponent implements OnInit {
     
     this.user.saveUser(this.addUser.value).subscribe((result)=>{
       console.warn("the result of add user API is ",result);
+      this.alert=true;
+      this.addUser.reset({})
     })
+  }
 
-    // this.user.getAPIData().subscribe((data=>{
-    //   console.warn("the data recieved is ",data["data"][0].name)
-    //   this.collection=data["data"]
-    //   console.log("collections element" ,this.collection[1].name)
-    // }))
-    
+  closeAlert()
+  {
+    this.alert=false
   }
 
 }

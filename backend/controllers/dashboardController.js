@@ -70,9 +70,37 @@ async function fetchUser(req, res) {
     }
 }
 
+async function deleteUser(req, res) {
+    try{
+        console.log("the incoming email from front end is",req.body.email)
+
+         userSchema.deleteOne({"email":req.body.email})
+         .then(status=>{
+              console.log("the status after deletion is ",status)
+              res.status(200).send({
+                "message" : "The User Deleted Succesfully"
+            })
+         })
+         .catch(e=>{
+             console.log("the error occured in the delete user in",e)
+             res.status(400).send({
+                "Error" : e
+            })
+         })
+    }
+    catch(e)
+    {
+        res.status(400).send({
+            "message": "Error in deleting user",
+            "error": e
+        })
+    }
+}
+
 
 module.exports = {
     addUser,
-    fetchUser
+    fetchUser,
+    deleteUser
 }
 

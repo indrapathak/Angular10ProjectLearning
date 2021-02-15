@@ -9,5 +9,6 @@ module.exports = (app) => {
 
 app.route('/user').post(dashboard.addUser)
 app.route('/user').get( dashboard.fetchUser)
+app.route('/userDelete').post(dashboard.deleteUser)
 
 }
