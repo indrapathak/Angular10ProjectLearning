@@ -29,6 +29,16 @@ export class AddUserComponent implements OnInit {
   collectUser() {
     console.warn("The data that is recieved from the form is ", this.addUser.value)
     
+    this.user.saveUser(this.addUser.value).subscribe((result)=>{
+      console.warn("the result of add user API is ",result);
+    })
+
+    // this.user.getAPIData().subscribe((data=>{
+    //   console.warn("the data recieved is ",data["data"][0].name)
+    //   this.collection=data["data"]
+    //   console.log("collections element" ,this.collection[1].name)
+    // }))
+    
   }
 
 }

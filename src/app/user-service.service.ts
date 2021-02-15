@@ -6,7 +6,7 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class UserServiceService {
- url  = "http://localhost:5001/user?companyId=5fb60fefd825673314d2e1b0"
+ url  = "http://localhost:5050/user"
   constructor(private http : HttpClient) {}
   getAPIData()
   {
@@ -16,8 +16,8 @@ export class UserServiceService {
 
   saveUser(data)
   {
-    console.warn("The data recieved in the user service form for add user is",data)
-  //  return this.http.post(thi)
+    console.warn("The data recieved in the user services",data)
+    return this.http.post(this.url,data);
   }
 
 }

@@ -11,7 +11,7 @@ export class UserListComponent implements OnInit {
   constructor(private user:UserServiceService) {}
   ngOnInit(): void {
     this.user.getAPIData().subscribe((data=>{
-      console.warn("the data recieved is ",data["data"][0].name)
+      console.warn("the data recieved is ",data)
       this.collection=data["data"]
       console.log("collections element" ,this.collection[1].name)
     }))
