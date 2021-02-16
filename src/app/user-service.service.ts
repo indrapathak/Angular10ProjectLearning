@@ -21,11 +21,23 @@ export class UserServiceService {
   }
 
   //Delete User Function is not working as backend is not getting email Need check for this
-  deleteUserData(key)
+  deleteUserData(data)
   {
-    let urlVal = "http://localhost:5050/userDelete"
-    console.log("the deletion key in delete User Data in services is",key)
-    return this.http.post(this.url+"Delete",key)
+    
+    console.log("the deletion key in delete User Data in services is",data)
+    return this.http.delete(`${this.url}/${data}`)
+  }
+
+  getCurrentUser(key)
+  {
+     console.warn("the get API data function is called ",key,`${this.url}/${key}`)
+     return this.http.get(`${this.url}/${key}`)
+  }
+
+  updateUserData(key,data)
+  {
+     console.warn("the Update API data function is called ",key,`${this.url}/${key}`)
+     return this.http.put(`${this.url}/${key}`,data)
   }
 
 }

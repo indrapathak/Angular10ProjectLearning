@@ -15,7 +15,7 @@ const routes: Routes = [
   },
   {
     component : UpdateUserComponent,
-    path : "update"
+    path : "update/:email"
   },
   {
     component : RegisterComponent,

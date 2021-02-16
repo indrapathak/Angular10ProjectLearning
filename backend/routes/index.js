@@ -4,11 +4,9 @@
 const dashboard = require('../controllers/dashboardController');
 
 module.exports = (app) => {
-
-
-
 app.route('/user').post(dashboard.addUser)
 app.route('/user').get( dashboard.fetchUser)
-app.route('/userDelete').post(dashboard.deleteUser)
-
+app.route('/user/:email').delete(dashboard.deleteUser)
+app.route('/user/:email').put(dashboard.updateUser)
+app.route('/user/:email').get(dashboard.fetchParticularUser)
 }

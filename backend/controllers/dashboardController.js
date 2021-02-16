@@ -45,6 +45,47 @@ async function addUser(req, res) {
     }
 }
 
+
+async function updateUser(req, res) {
+    console.log("the update user function is called",req.params)
+    try {
+
+        let newUser = {}
+        let email = req.params.email;
+
+        for (let bodyParam in req.body)
+        {
+            newUser[bodyParam]= req.body[bodyParam]
+        }
+      
+        userSchema.updateOne({ "email": email }, { "$set": newUser })
+        .then(status => {
+            if (status.n == 1 && status.nModified == 1) {
+              
+                return res.status(200).send({ "message": "User Details Updated Successfully" })
+            }
+            else if (status.n == 1 && status.nModified == 0) {
+                return res.status(400).send({ "message": "User Details Already Updated" })
+            }
+            else {
+                return res.status(400).send({ "message": "User Not Found" })
+            }
+        })
+        .catch(e => {
+            console.log("Query catch error", e)
+            return res.status(400).send({ "message": "Server Error" })
+        })
+      
+    }
+    catch (e) {
+        res.status(400).send({
+            "message": "Error in saving user",
+            "error": e
+        })
+    }
+}
+
+
 async function fetchUser(req, res) {
     try{
          userSchema.find({})
@@ -70,16 +111,51 @@ async function fetchUser(req, res) {
     }
 }
 
+async function fetchParticularUser (req,res)
+{
+    try{
+        console.log("The email value in fetch particular user is",req.body.email,req.params)
+        let email = req.params.email;
+        userSchema.find({"email":email})
+        .then(data=>{
+             console.log("the data of the user is ",data)
+             res.status(200).send({
+               "data": data
+           })
+        })
+        .catch(e=>{
+            console.log("the error occured in the fetch user in",e)
+            res.status(400).send({
+               "Error" : e
+           })
+        })
+   }
+   catch(e)
+   {
+       res.status(400).send({
+           "message": "Error in saving user",
+           "error": e
+       })
+   }
+}
+
 async function deleteUser(req, res) {
     try{
-        console.log("the incoming email from front end is",req.body.email)
-
-         userSchema.deleteOne({"email":req.body.email})
+        console.log("the incoming email from front end is", req.params.email)
+        let email = req.params.email;
+         userSchema.deleteOne({"email":email})
          .then(status=>{
               console.log("the status after deletion is ",status)
-              res.status(200).send({
-                "message" : "The User Deleted Succesfully"
-            })
+              if (status.n == 0 && status.deletedCount == 0) {
+              
+                return res.status(200).send({ "message": "User Not Deleted" })
+            }
+            else if (status.n == 1 && status.deletedCount == 1) {
+                return res.status(200).send({ "message": "User Deleted Successfuly" })
+            }
+            else {
+                return res.status(400).send({ "message": "User Not Found" })
+            }
          })
          .catch(e=>{
              console.log("the error occured in the delete user in",e)
@@ -101,6 +177,8 @@ async function deleteUser(req, res) {
 module.exports = {
     addUser,
     fetchUser,
-    deleteUser
+    fetchParticularUser,
+    deleteUser,
+    updateUser
 }
 
