@@ -7,7 +7,7 @@ import {UserServiceService} from '../user-service.service' ;
   styleUrls: ['./user-list.component.css']
 })
 export class UserListComponent implements OnInit {
-  collection={}
+  collection=[]
   constructor(private user:UserServiceService) {}
   ngOnInit(): void {
     this.user.getAPIData().subscribe((data=>{
@@ -19,6 +19,7 @@ export class UserListComponent implements OnInit {
 
   deleteUser(deletionKey)
   {
+    this.collection.splice(deletionKey-1,1)
     console.log("the deleteuser function is called with deletionKey",deletionKey)
     this.user.deleteUserData(deletionKey).subscribe(result=>{
       console.warn("the result from the user deletion is",result)

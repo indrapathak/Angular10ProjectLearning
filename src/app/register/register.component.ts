@@ -11,10 +11,13 @@ import { UserServiceService } from '../user-service.service';
 })
 export class RegisterComponent implements OnInit {
 
+  alert : boolean = false;
+
   registerUser = new FormGroup({
     name: new FormControl(''),
     email: new FormControl(''),
-    password: new FormControl('')
+    password: new FormControl(''),
+    mobile: new FormControl('')
 
   })
 
@@ -27,10 +30,18 @@ export class RegisterComponent implements OnInit {
     console.warn("The data that is recieved from the form is ", this.registerUser.value)
     
     this.user.saveUser(this.registerUser.value).subscribe((result)=>{
-      console.warn("the result of add user API is ",result);
+      console.warn("the result of register user API is ",result);
+      this.alert=true;
+      this.registerUser.reset({})
 
     })
   }
+
+  closeAlert()
+  {
+    this.alert=false
+  }
+
 
 
 }
