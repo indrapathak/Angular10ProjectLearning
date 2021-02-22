@@ -6,7 +6,8 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class UserServiceService {
- url  = "http://localhost:5050/user"
+ //url  = "http://localhost:5050/user"
+  url = "https://still-forest-96530.herokuapp.com/user"
   constructor(private http : HttpClient) {}
   getAPIData()
   {
