@@ -6,6 +6,7 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class UserServiceService {
+  
  //url  = "http://localhost:5050/user"
   url = "https://still-forest-96530.herokuapp.com/user"
   constructor(private http : HttpClient) {}
@@ -24,7 +25,6 @@ export class UserServiceService {
   //Delete User Function is not working as backend is not getting email Need check for this
   deleteUserData(data)
   {
-    
     console.log("the deletion key in delete User Data in services is",data)
     return this.http.delete(`${this.url}/${data}`)
   }
