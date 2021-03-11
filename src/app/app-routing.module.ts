@@ -5,6 +5,7 @@ import {UpdateUserComponent} from './update-user/update-user.component' ;
 import {RegisterComponent} from './register/register.component';
 import {LoginComponent}  from './login/login.component';
 import {UserListComponent} from './user-list/user-list.component' ;
+import {ChartsComponentComponent} from './charts-component/charts-component.component';
 
 
 
@@ -24,6 +25,10 @@ const routes: Routes = [
   {
     component : LoginComponent,
     path : "login"
+  },
+  {
+    component : ChartsComponentComponent,
+    path : "Charts"
   },
   {
     component : UserListComponent,

@@ -7,8 +7,13 @@ import {HttpClient} from '@angular/common/http';
 })
 export class UserServiceService {
   
- //url  = "http://localhost:5050/user"
-  url = "https://still-forest-96530.herokuapp.com/user"
+ url  = "http://localhost:5050/user"
+ //Below URL is working Backend URL
+ //url = "https://still-forest-96530.herokuapp.com/user"
+
+ // URL for testing the spring boot app localhost API and Hosted APP Api  
+ //url = "http://localhost:8080/getAllData";
+ url1 =  "https://springnewap.herokuapp.com/getAllData";
   constructor(private http : HttpClient) {}
   getAPIData()
   {
@@ -39,6 +44,13 @@ export class UserServiceService {
   {
      console.warn("the Update API data function is called ",key,`${this.url}/${key}`)
      return this.http.put(`${this.url}/${key}`,data)
+  }
+
+  ///////////////////////////////////Getting Charts Data //////////////////////
+  getChartsData()
+  {
+     console.warn("The get charts data function is called")
+     return this.http.get(this.url1)
   }
 
 }
